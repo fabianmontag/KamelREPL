@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>OCaml JS Toplevel</title>
+      <script type="module" crossorigin src="/KamelREPL/assets/index-BPwK-mWl.js"></script>
+      <link rel="stylesheet" crossorigin href="/KamelREPL/assets/index-CpJoHUch.css">
+    </head>
+    <body>
+        <div id="toplevel-container">
+            <div id="output"></div>
+            <div>
+                <div id="sharp" class="sharp"></div>
+                <textarea id="userinput" autocomplete="off" autocorrect="off" spellcheck="false" disabled>Loading ...</textarea>
+            </div>
+        </div>
+
+        <script>
+            // script for auto growing textarea
+            // https://stackoverflow.com/questions/454202/creating-a-textarea-with-auto-resize
+            document.querySelectorAll("textarea").forEach(function (textarea) {
+                textarea.style.height = textarea.scrollHeight + "px";
+                textarea.style.overflowY = "hidden";
+
+                textarea.addEventListener("input", function () {
+                    this.style.height = "auto";
+                    this.style.height = this.scrollHeight + "px";
+                });
+            });
+
+            // script for inserting tab in textarea
+            // stackoverflow.com/questions/6637341/use-tab-to-indent-in-textarea
+            https: document.querySelectorAll("textarea").forEach((e) =>
+                e.addEventListener("keydown", function (e) {
+                    if (e.key == "Tab") {
+                        e.preventDefault();
+                        var start = this.selectionStart;
+                        var end = this.selectionEnd;
+
+                        this.value = this.value.substring(0, start) + "\t" + this.value.substring(end);
+                        this.selectionStart = this.selectionEnd = start + 1;
+                    }
+                })
+            );
+        </script>
+    </body>
+</html>
